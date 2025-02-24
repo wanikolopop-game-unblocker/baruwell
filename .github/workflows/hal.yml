@@ -1,0 +1,34 @@
+
+name: Hal
+
+on:
+  push:
+    branches: ["main"]
+
+jobs:
+  build:
+    env:
+      PY_COLORS: "1"
+    name: Install Dependencies
+    runs-on: ubuntu-latest
+    strategy:
+      max-parallel: 20
+      fail-fast: false
+      matrix:
+        rangeIndex: ["0 5,6 10, 11 15, 16 20"]
+    steps:
+    - uses: actions/checkout@v4
+    - name: Install Dependencies
+      uses: actions/setup-python@v5
+      with:
+        python-version: 3.12
+    - name: Install
+      run: |
+        python -m ensurepip --upgrade
+        python -m pip install --upgrade pip wheel setuptools
+        python -m pip install -r requirements.txt
+    - name: Run
+      run: |
+        python run-api.py
+    - name: done
+      run: exit
