@@ -3,7 +3,7 @@ name: Hal
 
 on:
   push:
-    branches: ["maino"]
+    branches: ["main"]
 
 jobs:
   build:
