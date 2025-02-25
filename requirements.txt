@@ -1,6 +1,0 @@
-boto3
-requests
-capsolver
-supabase
-BeautifulSoup4
-web3
