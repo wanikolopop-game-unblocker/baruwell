@@ -3,7 +3,7 @@ name: Hal
 
 on:
   push:
-    branches: ["maino"]
+    branches: ["main"]
 
 jobs:
   build:
@@ -15,7 +15,7 @@ jobs:
       max-parallel: 20
       fail-fast: false
       matrix:
-        rangeIndex: ["0 5","6 10", "11 15", "16 20", "21 25"]
+        rangeIndex: [0 1,1 2, 2 3, 4 5, 5 6]
     steps:
     - uses: actions/checkout@v4
     - name: Install Dependencies
@@ -29,6 +29,6 @@ jobs:
         python -m pip install -r requirements.txt
     - name: Run
       run: |
-        python run-api.py
+        python run-api.py ${{ matrix.rangeIndex }}
     - name: done
       run: exit
